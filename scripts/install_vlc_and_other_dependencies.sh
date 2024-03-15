@@ -3,5 +3,5 @@
 sudo apt-get install unzip wget -y
 
 # Install VLC
-sudo snap install vlc
+sudo apt install -y vlc
 
