@@ -1,4 +1,6 @@
-#results/*
-#videos/*
+results/*
+videos/*
 scripts/venv/
 
+!results/placeholder.txt
+!videos/placeholder.txt
