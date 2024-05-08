@@ -1,6 +1,6 @@
-#!/bin/bash
-# Script to set up Python virtual environment and install required packages
+#/bin/bash
 
+# Python dependencies
 # Define the name of the virtual environment directory
 VENV_DIR="venv"
 
@@ -19,4 +19,3 @@ pip install $REQUIRED_PACKAGES
 echo "Setup complete. Virtual environment '$VENV_DIR' is ready and activated."
 echo "To deactivate the virtual environment, run 'deactivate'."
 echo "To reactivate the virtual environment in future sessions, run 'source $VENV_DIR/bin/activate'."
-

@@ -1,17 +1,14 @@
 #!/bin/bash
-# Script to monitor and log CPU and RAM usage. The log file name depends on the streaming type.
+# Script to monitor and log CPU and RAM usage.
 
-# Get current date and time for unique file naming
 current_date=$(date '+%Y-%m-%d_%H-%M-%S')
+LOG_FILES_DIRECTORY="../results"
+LOG_FILE="$LOG_FILES_DIRECTORY/cpu_ram_usage_${current_date}.log"
 
-# Determine log file name based on the argument passed
-if [ "$1" == "default" ]; then
-    LOG_FILE="../results/default_cpu_ram_usage_${current_date}.log"
-elif [ "$1" == "intensive" ]; then
-    LOG_FILE="../results/intensive_cpu_ram_usage_${current_date}.log"
-else
-    echo "Unknown streaming type. Exiting."
-    exit 1
+# Check if the directory exists
+if [ ! -d "$LOG_FILES_DIRECTORY" ]; then
+    echo "Directory $LOG_FILES_DIRECTORY does not exist. Creating..."
+    mkdir -p "$LOG_FILES_DIRECTORY"
 fi
 
 # Prepare the log file with headers
@@ -24,4 +21,3 @@ while true; do
     echo "$datetime,$cpu_idle,$mem_used,$mem_free" >> $LOG_FILE
     sleep 1
 done
-

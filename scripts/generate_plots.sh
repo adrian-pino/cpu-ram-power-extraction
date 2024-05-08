@@ -6,4 +6,3 @@ LOG_FILES_DIRECTORY="../results"
 
 # Run the Python plotting script with the hardcoded directory path as an argument
 python3 plot_cpu_ram.py "$LOG_FILES_DIRECTORY"
-
