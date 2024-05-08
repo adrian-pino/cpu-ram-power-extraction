@@ -3,6 +3,7 @@ import os
 import pandas as pd
 import matplotlib.pyplot as plt
 import glob
+import numpy as np
 
 def plot_histograms(log_file_path):
     # Load the log file into a DataFrame
@@ -18,26 +19,41 @@ def plot_histograms(log_file_path):
     # Get the directory where the log file is located
     log_dir = os.path.dirname(log_file_path)
 
+    # Creating side by side histograms
+    fig, ax = plt.subplots(1, 2, figsize=(16, 6))
+
+    # Font settings
+    title_fontsize = 24
+    label_fontsize = 20
+    text_fontsize = 20
+
     # Plot CPU Usage Histogram
-    plt.figure(figsize=(10, 6))
-    plt.hist(df["CPU_Usage"], bins=8, color='lightcoral', edgecolor='black')
-    plt.title("Histogram of CPU Usage (%)")
-    plt.xlabel("CPU Usage (%)")
-    plt.ylabel("Frequency")
-    plt.grid(axis='y', alpha=0.75)
-    cpu_plot_name = os.path.join(log_dir, f"cpu_histogram_{date_time}.png")
-    plt.savefig(cpu_plot_name)
-    plt.close()
+    cpu_data = df["CPU_Usage"]
+    ax[0].hist(cpu_data, bins=8, color='lightcoral', edgecolor='black', zorder=3)
+    ax[0].set_title("CPU", fontsize=title_fontsize)
+    ax[0].set_xlabel("CPU Usage (%)", fontsize=label_fontsize)
+    ax[0].set_ylabel("Frequency", fontsize=label_fontsize)
+    ax[0].grid(True, which='both', linestyle='--', linewidth=0.5, zorder=0)
+    ax[0].tick_params(axis='both', which='major', labelsize=label_fontsize)
+    ax[0].text(0.95, 0.95, f'mean: {cpu_data.mean():.2f}, median: {np.median(cpu_data):.2f}',
+               transform=ax[0].transAxes, verticalalignment='top', horizontalalignment='right',
+               fontsize=text_fontsize, zorder=4)
 
     # Plot RAM Usage Histogram
-    plt.figure(figsize=(10, 6))
-    plt.hist(df["Memory_Used_MB"], bins=8, color='skyblue', edgecolor='black')
-    plt.title("Histogram of RAM Used (MB)")
-    plt.xlabel("RAM Used (MB)")
-    plt.ylabel("Frequency")
-    plt.grid(axis='y', alpha=0.75)
-    ram_plot_name = os.path.join(log_dir, f"ram_histogram_{date_time}.png")
-    plt.savefig(ram_plot_name)
+    ram_data = df["Memory_Used_MB"]
+    ax[1].hist(ram_data, bins=8, color='skyblue', edgecolor='black', zorder=3)
+    ax[1].set_title("RAM", fontsize=title_fontsize)
+    ax[1].set_xlabel("RAM Used (MB)", fontsize=label_fontsize)
+    ax[1].set_ylabel("Frequency", fontsize=label_fontsize)
+    ax[1].grid(True, which='both', linestyle='--', linewidth=0.5, zorder=0)
+    ax[1].tick_params(axis='both', which='major', labelsize=label_fontsize)
+    ax[1].text(0.95, 0.95, f'mean: {ram_data.mean():.2f}, median: {np.median(ram_data):.2f}',
+               transform=ax[1].transAxes, verticalalignment='top', horizontalalignment='right',
+               fontsize=text_fontsize, zorder=4)
+
+    plt.tight_layout()
+    plot_name = os.path.join(log_dir, f"cpu_ram_histogram_{date_time}.png")
+    plt.savefig(plot_name)
     plt.close()
 
 if __name__ == "__main__":
@@ -49,4 +65,3 @@ if __name__ == "__main__":
     log_files = glob.glob(os.path.join(log_files_directory, "*.log"))
     for log_file in log_files:
         plot_histograms(log_file)
-
