@@ -8,15 +8,28 @@ This repository contains scripts and tools for monitoring CPU, RAM, and power co
 ```plaintext
 .
 ├── results
+│   ├── cpu_ram_histogram_example.png
+│   └── power_consumption_example.png
 └── scripts
-    ├── generate_plots.sh
+    ├── generate_plot_power_consumption.sh
+    ├── generate_plots_cpu_ram.sh
     ├── install_dependencies.sh
     ├── monitor_cpu_ram.sh
     ├── monitor_power_consumption.sh
     ├── plot_cpu_ram.py
+    ├── plot_power_consumption.py
     ├── run_experiment.sh
     └── start_streaming.sh
 ```
+
+## Example Plots
+
+### CPU and RAM Usage Histogram
+<img src="results/cpu_ram_histogram_example.png" alt="CPU and RAM" width="800">
+
+### Power Consumption Over Time
+<img src="results/power_consumption_example.png" alt="Power Consumption" width="800">
+
 
 ## Scripts
 
@@ -80,13 +93,22 @@ This script starts streaming a video file using FFmpeg. The streaming parameters
 - `STREAMING_RECEIVER_PORT`: Port of the streaming receiver.
 - `STREAM_NAME`: Name of the stream.
 
-### `generate_plots.sh`
+### `generate_plot_power_consumption.sh`
+
+This script generates a plot for power consumption from log files located in the `../results` directory. It calls the `plot_power_consumption.py` script to create the plot.
+
+**Usage:**
+```bash
+./generate_plot_power_consumption.sh
+```
+
+### `generate_plots_cpu_ram.sh`
 
 This script generates histograms for CPU and RAM usage from log files located in the `../results` directory. It calls the `plot_cpu_ram.py` script to create the plots.
 
 **Usage:**
 ```bash
-./generate_plots.sh
+./generate_plots_cpu_ram.sh
 ```
 
 ### `plot_cpu_ram.py`
@@ -106,6 +128,23 @@ DateTime,CPU_Idle(%),Memory_Used(KB),Memory_Free(KB)
 **Histograms:**
 - **CPU Usage Histogram:** Shows the distribution of CPU usage.
 - **RAM Usage Histogram:** Shows the distribution of RAM usage.
+
+### `plot_power_consumption.py`
+
+This Python script generates a plot for power consumption over time from the provided log files directory. It processes the log files and creates a plot showing power consumption over time, with the area under the curve filled and mean and median values displayed.
+
+**Usage:**
+```bash
+python3 plot_power_consumption.py <path_to_log_files_directory>
+```
+
+**Log File Format:**
+```plaintext
+DateTime,Power_Consumption(W)
+```
+
+**Plot:**
+- **Power Consumption Over Time:** Shows the power consumption over time with the area under the curve filled.
 
 ### `run_experiment.sh`
 
@@ -134,7 +173,13 @@ This script orchestrates the running of a streaming experiment. It starts the st
     deactivate
     ```
 
-## Running Experiments
+## Run the experiment (video streaming transmission and KPIs extraction) 
+1. **Run the Experiment**:
+    ```bash
+    ./run_experiment.sh
+    ```
+
+## Manual execution of the different scripts (Alternative)
 
 1. **Start the Streaming**:
     ```bash
@@ -151,14 +196,14 @@ This script orchestrates the running of a streaming experiment. It starts the st
     ./monitor_power_consumption.sh
     ```
 
-4. **Run the Experiment**:
+4. **Generate CPU and RAM Usage Plots**:
     ```bash
-    ./run_experiment.sh
+    ./generate_plots_cpu_ram.sh
     ```
 
-5. **Generate Plots**:
+5. **Generate Power Consumption Plot**:
     ```bash
-    ./generate_plots.sh
+    ./generate_plot_power_consumption.sh
     ```
 
 ## Notes
@@ -169,4 +214,3 @@ This script orchestrates the running of a streaming experiment. It starts the st
 ## License
 
 This project is licensed under the MIT License.
-

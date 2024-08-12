@@ -1,6 +1,5 @@
 results/*
+!results/cpu_ram_histogram_example.log.png
+!results/power_consumption_example.log.png
 videos/*
 scripts/venv/
-
-!results/placeholder.txt
-!videos/placeholder.txt

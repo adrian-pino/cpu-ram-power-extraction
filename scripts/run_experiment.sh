@@ -31,6 +31,7 @@ echo ""
 
 # Generate the plots
 source venv/bin/activate
-./generate_plots.sh
+./generate_plot_power_consumption.sh
+./generate_plots_cpu_ram.sh
 echo "Plots generated successfully"
 
