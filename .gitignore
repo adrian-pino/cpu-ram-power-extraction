@@ -1,5 +1,5 @@
 results/*
-!results/cpu_ram_histogram_example.log.png
-!results/power_consumption_example.log.png
+!results/cpu_ram_histogram_example.png
+!results/power_consumption_example.png
 videos/*
 scripts/venv/
