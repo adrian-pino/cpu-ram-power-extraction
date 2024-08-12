@@ -45,7 +45,7 @@ DateTime,CPU_Idle(%),Memory_Used(KB),Memory_Free(KB)
 
 ### `monitor_power_consumption.sh`
 
-This script monitors and logs the power consumption of a device via MQTT. It connects to the specified MQTT broker, subscribes to the power consumption topic, and logs the data to a file in the `../results/power_consumption` directory. The log file is named based on the current date and time.
+This script monitors and logs the power consumption of a device via MQTT. It connects to the specified MQTT broker, subscribes to the power consumption topic, and logs the data to a file in the `../results/` directory. The log file is named based on the current date and time.
 
 **Usage:**
 ```bash

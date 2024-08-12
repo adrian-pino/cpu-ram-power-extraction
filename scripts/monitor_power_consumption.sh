@@ -1,11 +1,11 @@
 #!/bin/bash
 # Script to monitor and log power consumption via MQTT.
 
-MQTT_BROKER_IP="<>"
-MQTT_USER="<>"
-MQTT_PASSWORD="<>"
-MQTT_TOPIC="<>/status/switch:0"
-LOG_FILES_DIRECTORY="../results/power_consumption"
+MQTT_BROKER_IP="192.168.49.56"
+MQTT_USER="xgain"
+MQTT_PASSWORD="xgainisawesome"
+MQTT_TOPIC="shellyplusplugs-80646fe137ec/status/switch:0"
+LOG_FILES_DIRECTORY="../results"
 LOG_FILE="$LOG_FILES_DIRECTORY/power_consumption_$(date '+%Y-%m-%d_%H-%M-%S').log"
 
 # Check if the directory exists
