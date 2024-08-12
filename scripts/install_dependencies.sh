@@ -7,6 +7,10 @@ VENV_DIR="venv"
 # Define required Python packages
 REQUIRED_PACKAGES="pandas matplotlib psutil"
 
+echo "Installing dependencies..."
+echo "Installing jq"
+sudo apt-get install jq -y
+
 echo "Creating virtual environment..."
 python3 -m venv $VENV_DIR
 
