@@ -2,7 +2,7 @@
 
 This repository contains scripts and tools for extracting CPU/RAM and power consumption while a processing task is being carried. The selected processing task is a video streaming transmission (making use of ffmpeg9, although any other app could be executed, and the CPU/RAM & power consumption extraction should work without being affected. For the power consumption extraction in specific, a smart plug (Shelly Plug S) is being used. Such device sends the consumption periodically via MQTT, which could be extracted using the monitor_power_consumption script.
 
-Such repository is under the context of the project XGAIN which has been funded by the European Union. In specific, is under the umbrella of the dry-run lab testing actitivies for a use case where a drones will provide streaming services over 5G. Such streaming should be processed in the Edge.
+Such repository is under the context of the EU-funded [XGAIN Project](https://xgain-project.eu/). In specific, such work is under the umbrella of the dry-run lab testing actitivies for a use case where a drones will provide streaming services over 5G. Such streaming should be processed in the Edge.
 
 ## Directory Structure
 
