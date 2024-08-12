@@ -1,4 +1,4 @@
-# Compute metrics extraction for a given processing task
+# CPU/RAM & power consumption extraction for a given processing task
 
 This repository contains scripts and tools for extracting CPU/RAM and power consumption while a processing task is being carried. The selected processing task is a video streaming transmission (making use of ffmpeg9, although any other app could be executed, and the CPU/RAM & power consumption extraction should work without being affected. For the power consumption extraction in specific, a smart plug (Shelly Plug S) is being used. Such device sends the consumption periodically via MQTT, which could be extracted using the monitor_power_consumption script.
 
@@ -211,7 +211,3 @@ This script orchestrates the running of a streaming experiment. It starts the st
 
 - For the power consumption KPI, configure the MQTT broker settings in the `monitor_power_consumption.sh` script.
 - Adjust the video streaming parameters in the `start_streaming.sh` script as needed.
-
-## License
-
-This project is licensed under the MIT License.
