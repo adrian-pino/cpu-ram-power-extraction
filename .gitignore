@@ -1,5 +1,15 @@
+# Ignore everything in the results directory
 results/*
-!results/cpu_ram_histogram_example.png
-!results/power_consumption_example.png
+
+# Unignore specific example PNG files
+!results/cpu_ram/cpu_ram_histogram_example.png
+!results/power_consumption/power_consumption_example.png
+
+# Continue ignoring everything else
+results/**/*.log
+results/**/*.png
+!results/**/*.example.pngç
+
+# Ignore videos & venv as well
 videos/*
 scripts/venv/

@@ -1,9 +1,13 @@
 #!/bin/bash
 # Script to monitor and log CPU and RAM usage.
 
+# Get the current date and hostname
 current_date=$(date '+%Y-%m-%d_%H-%M-%S')
-LOG_FILES_DIRECTORY="../results"
-LOG_FILE="$LOG_FILES_DIRECTORY/cpu_ram_usage_${current_date}.log"
+hostname=$(hostname)
+
+# Define the log file path with the hostname in the filename
+LOG_FILES_DIRECTORY="../results/cpu_ram"
+LOG_FILE="$LOG_FILES_DIRECTORY/${hostname}_cpu_ram_usage_${current_date}.log"
 
 # Check if the directory exists
 if [ ! -d "$LOG_FILES_DIRECTORY" ]; then

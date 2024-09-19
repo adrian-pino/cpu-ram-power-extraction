@@ -9,10 +9,8 @@ def plot_power_consumption(log_file_path):
     # Load the log file into a DataFrame
     df = pd.read_csv(log_file_path, parse_dates=["DateTime"])
 
-    # Extract date and time information from the log file name
-    file_name = os.path.basename(log_file_path)
-    datetime_info = file_name.split("_")[2] + "_" + file_name.split("_")[3]  # Extracting date and time from the file name
-    date_time = datetime_info.replace("-", "_")  # Replace '-' with '_' for consistency
+    # Extract the log file name without the extension
+    file_name_without_ext = os.path.splitext(os.path.basename(log_file_path))[0]
 
     # Get the directory where the log file is located
     log_dir = os.path.dirname(log_file_path)
@@ -26,7 +24,7 @@ def plot_power_consumption(log_file_path):
     fig, ax = plt.subplots(figsize=(16, 6))
 
     # Plot Power Consumption
-    ax.plot(df["DateTime"], df["Power_Consumption(W)"], color='lightcoral', marker='o', linestyle='-', zorder=3)
+    ax.plot(df["DateTime"], df["Power_Consumption(W)"], color='lightcoral', linestyle='-', linewidth=0.25, zorder=3)
     ax.fill_between(df["DateTime"], df["Power_Consumption(W)"], color='lightcoral', alpha=0.3)
 
     # Set title and labels
@@ -46,7 +44,8 @@ def plot_power_consumption(log_file_path):
             fontsize=text_fontsize, bbox=dict(facecolor='white', alpha=0.8), zorder=5)
 
     plt.tight_layout()
-    plot_name = os.path.join(log_dir, f"power_consumption_plot_{date_time}.png")
+
+    plot_name = os.path.join(log_dir, f"{file_name_without_ext}.png")
     plt.savefig(plot_name)
     plt.close()
 

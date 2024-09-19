@@ -11,10 +11,8 @@ def plot_histograms(log_file_path):
     df["CPU_Usage"] = 100 - df["CPU_Idle(%)"]
     df["Memory_Used_MB"] = df["Memory_Used(KB)"] / 1024
 
-    # Extract date and time information from the log file name
-    file_name = os.path.basename(log_file_path)
-    datetime_info = file_name.split("_")[4]  # Extracting date and time from the file name
-    date_time = datetime_info.replace("-", "_")  # Replace '-' with '_' for consistency
+    # Extract the log file name without the extension
+    file_name_without_ext = os.path.splitext(os.path.basename(log_file_path))[0]
 
     # Get the directory where the log file is located
     log_dir = os.path.dirname(log_file_path)
@@ -23,9 +21,9 @@ def plot_histograms(log_file_path):
     fig, ax = plt.subplots(1, 2, figsize=(16, 6))
 
     # Font settings
-    title_fontsize = 24
-    label_fontsize = 20
-    text_fontsize = 20
+    title_fontsize = 18  # Smaller font
+    label_fontsize = 16  # Smaller font
+    text_fontsize = 14  # Smaller font
 
     # Plot CPU Usage Histogram
     cpu_data = df["CPU_Usage"]
@@ -35,9 +33,10 @@ def plot_histograms(log_file_path):
     ax[0].set_ylabel("Frequency", fontsize=label_fontsize)
     ax[0].grid(True, which='both', linestyle='--', linewidth=0.5, zorder=0)
     ax[0].tick_params(axis='both', which='major', labelsize=label_fontsize)
+    # Display mean and median in a box
     ax[0].text(0.95, 0.95, f'mean: {cpu_data.mean():.2f}, median: {np.median(cpu_data):.2f}',
                transform=ax[0].transAxes, verticalalignment='top', horizontalalignment='right',
-               fontsize=text_fontsize, zorder=4)
+               fontsize=text_fontsize, bbox=dict(facecolor='lightyellow', edgecolor='black', boxstyle='round,pad=0.5'), zorder=4)
 
     # Plot RAM Usage Histogram
     ram_data = df["Memory_Used_MB"]
@@ -47,12 +46,13 @@ def plot_histograms(log_file_path):
     ax[1].set_ylabel("Frequency", fontsize=label_fontsize)
     ax[1].grid(True, which='both', linestyle='--', linewidth=0.5, zorder=0)
     ax[1].tick_params(axis='both', which='major', labelsize=label_fontsize)
+    # Display mean and median in a box
     ax[1].text(0.95, 0.95, f'mean: {ram_data.mean():.2f}, median: {np.median(ram_data):.2f}',
                transform=ax[1].transAxes, verticalalignment='top', horizontalalignment='right',
-               fontsize=text_fontsize, zorder=4)
+               fontsize=text_fontsize, bbox=dict(facecolor='lightyellow', edgecolor='black', boxstyle='round,pad=0.5'), zorder=4)
 
     plt.tight_layout()
-    plot_name = os.path.join(log_dir, f"cpu_ram_histogram_{date_time}.png")
+    plot_name = os.path.join(log_dir, f"{file_name_without_ext}.png")
     plt.savefig(plot_name)
     plt.close()
 
