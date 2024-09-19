@@ -34,7 +34,7 @@ Such repository is under the context of the EU-funded [XGAIN Project](https://xg
 <img src="results/cpu_ram/cpu_ram_histogram_example.png" alt="CPU and RAM" width="800">
 
 ### Power Consumption Over Time
-<img src="results/power_comsumption/power_consumption_example.png" alt="Power Consumption" width="800">
+<img src="results/power_consumption/power_consumption_example.png" alt="Power Consumption" width="800">
 
 ## Setting Up the Environment
 
