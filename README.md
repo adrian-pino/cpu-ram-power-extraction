@@ -87,5 +87,5 @@ Such repository is under the context of the EU-funded [XGAIN Project](https://xg
     ```
 
 ## Notes
-- For the power consumption KPI, configure the MQTT broker settings in the `monitor_power_consumption.sh` script.
-- Adjust the video streaming parameters in the `start_streaming.sh` script as needed.
+- For the power consumption KPI, configure the MQTT parameters in the `monitor_power_consumption.sh` script.
+- For the streaming app, adjust the configuration parameters in the `start_streaming.sh` script as needed.
